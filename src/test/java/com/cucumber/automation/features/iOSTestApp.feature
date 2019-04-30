@@ -5,5 +5,5 @@ Feature: iOs Test App
     Given user is on Application Home Page
     When user enters "4" in first field
     And user enters "5" in second field
-    And clicks in Compute SUm
+    And clicks in Compute Sum
     Then user sees computed sum as "9"

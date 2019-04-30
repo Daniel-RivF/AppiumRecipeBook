@@ -1,0 +1,43 @@
+package com.cucumber.automation.utils;
+
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.android.AndroidDriver;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class AppiumBase {
+
+    public static WebDriver driver;
+    public static WebDriverWait waitVar;
+
+    public void createDriver() throws
+            MalformedURLException, InterruptedException {
+        //setting capabilities
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("platfor,","Android");
+
+        //relative path to .app file CHECK THIS¡¡¡
+        final File classpathRoot = new File(System.getProperty("user.dir"));
+        final File appDir = new File(classpathRoot, "src/test/resources/apps/");
+        final File app = new File(appDir,"TestApp.app");
+        caps.setCapability("app", app.getAbsolutePath());
+
+        // initializing driver object
+        driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+
+        // initialize waits
+        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        waitVar = new WebDriverWait(driver, 10);
+    }
+
+    public void teardown() {
+        //close the app
+        driver.quit();
+    }
+}
