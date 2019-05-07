@@ -2,8 +2,6 @@ Feature: iOs Test App
   I want to test
 
   Scenario: Calculate Sum
-    Given user is on Application Home Page
-    When user enters "4" in first field
-    And user enters "5" in second field
-    And clicks in Compute Sum
-    Then user sees computed sum as "9"
+    When user enters "ADMIN001" in first field
+    When user enters "ADMIN001" in second field
+

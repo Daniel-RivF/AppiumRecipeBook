@@ -17,7 +17,7 @@ public class Hooks {
     }
 
     @After
-    public void afterHookfunction {
+    public void afterHookfunction() {
         appiumBase.teardown();
     }
 }
