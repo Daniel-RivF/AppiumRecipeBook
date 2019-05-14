@@ -19,13 +19,13 @@ public class AppiumBase {
     public static WebDriverWait waitVar;
 
     public void createDriver() throws MalformedURLException, InterruptedException {
-        //setting capabilities
+        //setting capabilities:
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "testDevice");
         caps.setCapability(CapabilityType.PLATFORM_NAME,"Android");
-        caps.setCapability("platformVersion", "7.1.1");
+        caps.setCapability("platformVersion", "7");
         // CHANGE THIS WHEN USING A REAL DEVICE
-        caps.setCapability("avd","AndroidTestDevice");
+        //caps.setCapability("avd","Pixel_C_API_24");
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("appWaitActivity", "com.carrefour.tablet.*");
 
