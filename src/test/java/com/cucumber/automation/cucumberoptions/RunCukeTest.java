@@ -12,7 +12,8 @@ import cucumber.api.junit.Cucumber;
         plugin = {
                 "pretty",
                 "html:target/cucumber",
-        }
+        },
+        monochrome = true
 )
 
 public class RunCukeTest {

@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import org.junit.Assert;
 
 
+
 public class HomePage extends AppiumBase {
     // All the locators for Home page will be defined here
     // Example:
@@ -24,6 +25,8 @@ public class HomePage extends AppiumBase {
     By textfield2 = By.id("com.carrefour.tablet.local.debug:id/password");
     By computeSum = By.id("com.carrefour.tablet.local.debug:id/submit");
     //By tabCategories = By.id("");
+
+    //These classes are written always using the Id as a locator.
 
     public void putText(String text, String locator) {
         By el = MobileBy.id(locator);
@@ -37,13 +40,32 @@ public class HomePage extends AppiumBase {
         driver.findElement(buttonEl).click();
     }
 
-    public void f1(String text) {
-        By el = MobileBy.className(text);
-        String a = driver.findElements(el).get(0).getText();
-        Assert.assertTrue("aaaa", a.toLowerCase().contains("Datos de acceso".toLowerCase()));
 
-
+    public void clickElementWithXpath(String locator) {
+        By el = MobileBy.xpath(locator);
+        waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
+        //String a = driver.findElement(el).getText();
+        driver.findElement(el).click();
     }
+
+
+    public void validElementWithClassText(String textclass, Integer i, String text) {
+        By el = MobileBy.className(textclass);
+        String a = driver.findElements(el).get(i).getText();
+        Assert.assertTrue("Found element with class " + textclass + " and index " +
+                i.toString() + " does not match with " + text , a.toLowerCase().contains(text.toLowerCase()));
+    }
+
+    public void validateWithRegexp(String locator, String validatewith) {
+        By el = MobileBy.id(locator);
+        waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
+        Pattern pattern = Pattern.compile(validatewith);
+        String textElement = driver.findElement(el).getText();
+        Matcher matcher = pattern.matcher(textElement);
+        Assert.assertTrue("ERROR: Element with id " + locator + "did not match with regex " + validatewith , matcher.matches());
+    }
+
+    
 
     /*public boolean checkElement(WebElement el, String text) {
         try {

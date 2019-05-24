@@ -7,6 +7,7 @@ import com.cucumber.automation.utils.AppiumBase;
 import cucumber.api.java.Before;
 import cucumber.api.java.After;
 
+
 public class Hooks {
     AppiumBase appiumBase = new AppiumBase();
 
