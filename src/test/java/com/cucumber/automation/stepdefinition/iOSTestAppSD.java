@@ -8,12 +8,19 @@ import cucumber.api.java.en.When;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 
+
 import static org.junit.Assert.assertTrue;
 
 public class iOSTestAppSD {
     HomePage homePage = new HomePage();
 
-    @When("^user clicks on button with locator \"([^\"]*)\"$")
+    @When("^user taps back button on device$")
+    public void userBack() {
+        homePage.pressBack();
+
+    }
+
+    @When("^user clicks on button with id \"([^\"]*)\"$")
     public void user_click(String arg) {
         homePage.clickElement(arg);
     }
@@ -34,10 +41,20 @@ public class iOSTestAppSD {
         homePage.putText(arg1, arg2);
     }
 
+    @Then("^element with id \"([^\"]*)\" validates with regex \"([^\"]*)\"$")
+    public void elementId(String id, String regex) {
+        homePage.validateWithRegexp(id, regex);
+    }
+
     @Then("^element with classname \"([^\"]*)\" and index \"([^\"]*)\" validates with text \"([^\"]*)\"$")
     public void elementText(String arg1, String arg2, String arg3) {
         int index = Integer.parseInt(arg2);
         homePage.validElementWithClassText(arg1, index, arg3);
+    }
+
+    @Then("^element with xpath \"([^\"]*)\" validates with regex \"([^\"]*)\"$")
+    public void elementXpath(String locator, String regex) {
+        homePage.validateWithRegexpXpath(locator, regex);
     }
 
 

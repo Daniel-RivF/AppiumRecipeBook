@@ -1,15 +1,10 @@
 package com.cucumber.automation.pages.android;
 
 import com.cucumber.automation.utils.AppiumBase;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.appium.java_client.MobileBy;
-import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.junit.Assert;
@@ -27,6 +22,9 @@ public class HomePage extends AppiumBase {
     //By tabCategories = By.id("");
 
     //These classes are written always using the Id as a locator.
+    public void pressBack() {
+        driver.navigate().back();
+    }
 
     public void putText(String text, String locator) {
         By el = MobileBy.id(locator);
@@ -56,14 +54,25 @@ public class HomePage extends AppiumBase {
                 i.toString() + " does not match with " + text , a.toLowerCase().contains(text.toLowerCase()));
     }
 
+    public void validateWithRegexpXpath(String locator, String validatewith) {
+        By el = MobileBy.xpath(locator);
+        waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
+        Pattern pattern = Pattern.compile(validatewith);
+        String textElement = driver.findElement(el).getText();
+        Matcher matcher = pattern.matcher(textElement);
+        Assert.assertTrue("ERROR: Element with xpath " + locator + " did not match with regex " + validatewith, matcher.matches());
+    }
+
     public void validateWithRegexp(String locator, String validatewith) {
         By el = MobileBy.id(locator);
         waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
         Pattern pattern = Pattern.compile(validatewith);
         String textElement = driver.findElement(el).getText();
         Matcher matcher = pattern.matcher(textElement);
-        Assert.assertTrue("ERROR: Element with id " + locator + "did not match with regex " + validatewith , matcher.matches());
+        Assert.assertTrue("ERROR: Element with id " + locator + " did not match with regex " + validatewith + ". Found: " + textElement , matcher.matches());
     }
+
+
 
     
 
