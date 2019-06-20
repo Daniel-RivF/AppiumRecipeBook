@@ -1,18 +1,16 @@
 package com.cucumber.automation.stepdefinition;
 
 import com.cucumber.automation.pages.android.HomePage;
+import com.cucumber.automation.pages.android.ServicesTest;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.junit.Rule;
-import org.junit.rules.TestWatcher;
 
-
-import static org.junit.Assert.assertTrue;
 
 public class iOSTestAppSD {
+    //Instances:
     HomePage homePage = new HomePage();
+    ServicesTest jsontest = new ServicesTest();
 
     @When("^user taps back button on device$")
     public void userBack() {
@@ -57,31 +55,16 @@ public class iOSTestAppSD {
         homePage.validateWithRegexpXpath(locator, regex);
     }
 
-
-    /*@Given("^user is on Application Home Page$")
-
-
-    @When("^user enters \"([^\"]*)\" in first field$")
-    public void user_enters_in_first_field(String arg1) {
-        homePage.typeTextField1(arg1);
+    @Then("^response code for endpoint url \"([^\"]*)\" is 200$")
+    public void responseCode(String arg1) {
+        jsontest.testResponseCode200(arg1);
     }
 
-    @When("^user enters \"([^\"]*)\" in second field$")
-    public void user_enters_in_second_field(String arg1) {
-        homePage.typeTextField2(arg1);
-    }
-
-    @When("^clicks in Compute Sum$public void user_is_on_Application_Home_Page() {
-        assertTrue(homePage.isHomePage());
-        // Write code here that turns the phrase above into concrete action
-    }")
-    public void clicks_in_Compute_Sum() {
-        homePage.clickButton();
-    }
-
-
-
-    /*@Then("^user sees computed sum as \"([^\"]*)\"$")
-    public void user_sees_computed_sum_as(String arg1) {
+    /*@Then("^add item to cart in POST with endpoint url xxx$")
+    public void addItem() {
+        jsontest.postRequestTest();
     }*/
+
+
+
 }

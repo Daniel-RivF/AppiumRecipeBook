@@ -1,14 +1,12 @@
 package com.cucumber.automation.pages.android;
-
 import com.cucumber.automation.utils.AppiumBase;
+
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.junit.Assert;
-
 
 
 public class HomePage extends AppiumBase {
@@ -21,7 +19,6 @@ public class HomePage extends AppiumBase {
     By computeSum = By.id("com.carrefour.tablet.local.debug:id/submit");
     //By tabCategories = By.id("");
 
-    //These classes are written always using the Id as a locator.
     public void pressBack() {
         driver.navigate().back();
     }
@@ -38,14 +35,11 @@ public class HomePage extends AppiumBase {
         driver.findElement(buttonEl).click();
     }
 
-
     public void clickElementWithXpath(String locator) {
         By el = MobileBy.xpath(locator);
         waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
-        //String a = driver.findElement(el).getText();
         driver.findElement(el).click();
     }
-
 
     public void validElementWithClassText(String textclass, Integer i, String text) {
         By el = MobileBy.className(textclass);
@@ -72,52 +66,5 @@ public class HomePage extends AppiumBase {
         Assert.assertTrue("ERROR: Element with id " + locator + " did not match with regex " + validatewith + ". Found: " + textElement , matcher.matches());
     }
 
-
-
-    
-
-    /*public boolean checkElement(WebElement el, String text) {
-        try {
-            //waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
-            String foundText = driver.findElement(el).getText();
-            return foundText.toLowerCase().contains(text.toLowerCase());
-
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
-    public void findTextView(String text) {
-        //By el = MobileBy.className(text);
-        By el = driver.findElements(By.className(text)).get(0);
-        boolean found = checkElement(el, text);
-
-        //waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
-        boolean found = checkElement(el);
-        Assert.assertTrue("ERROR: Element with text " + text + "not found", found );
-    }/*
-
-
-    /*public void validateRegex(String locator, String re) {
-        By el = MobileBy.id(locator);
-
-    }*/
-
-    }
-
-
-
-
-
-
-
-
-
-
-    /*public void clickComputeSum() {
-        waitVar.until(ExpectedConditions.presenceOfElementLocated(result))
-    }*/
-
-
+}
 
