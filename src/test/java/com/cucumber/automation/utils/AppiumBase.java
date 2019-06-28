@@ -1,5 +1,6 @@
 package com.cucumber.automation.utils;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -15,7 +16,6 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 public class AppiumBase {
 
     public static WebDriver driver;
@@ -26,7 +26,7 @@ public class AppiumBase {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "testDevice");
         caps.setCapability(CapabilityType.PLATFORM_NAME,"Android");
-        caps.setCapability("platformVersion", "6");
+        caps.setCapability("platformVersion", "7");
         // CHANGE THIS WHEN USING A REAL DEVICE
         //caps.setCapability("avd","Pixel_C_API_25");
         caps.setCapability("autoGrantPermissions", true);
@@ -50,6 +50,7 @@ public class AppiumBase {
         // initialize waits
         driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
         waitVar = new WebDriverWait(driver, 10);
+
 
     }
 

@@ -2,8 +2,11 @@ package com.cucumber.automation.pages.android;
 import com.cucumber.automation.utils.AppiumBase;
 
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.junit.Assert;
@@ -65,6 +68,8 @@ public class HomePage extends AppiumBase {
         Matcher matcher = pattern.matcher(textElement);
         Assert.assertTrue("ERROR: Element with id " + locator + " did not match with regex " + validatewith + ". Found: " + textElement , matcher.matches());
     }
+
+
 
 }
 

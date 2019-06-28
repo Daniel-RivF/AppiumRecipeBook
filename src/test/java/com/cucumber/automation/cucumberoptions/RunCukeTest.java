@@ -11,7 +11,7 @@ import cucumber.api.junit.Cucumber;
         glue = "com.cucumber.automation.stepdefinition",
         plugin = {
                 "pretty",
-                "html:target/cucumber",
+                "html:target/cucumber","io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
         },
         monochrome = true
 )

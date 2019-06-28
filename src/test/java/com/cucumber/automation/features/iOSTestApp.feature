@@ -10,9 +10,13 @@ Feature: Android Test App
     When user clicks on button with id "com.carrefour.tablet.local.debug:id/tab_categories"
     When user clicks on element with xpath "//android.widget.TextView[contains(@resource-id,'id/name') and @text='Informática']"
     When user clicks on element with xpath "//android.widget.TextView[contains(@resource-id,'id/name') and @text='Portátiles']"
-    And wait for "2" seconds
     When user taps back button on device
+    When user clicks on element with xpath "(//android.widget.Button[contains(@resource-id,'id/add_cart_button') and @text='Añadir'])[2]"
+    When wait for "5" seconds
     When user clicks on element with xpath "(//android.widget.TextView[contains(@resource-id,'id/description')])[1]"
+    When wait for "5" seconds
+
+
 
 
 
