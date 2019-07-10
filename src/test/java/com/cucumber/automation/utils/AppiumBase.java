@@ -9,8 +9,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Before;
 import org.junit.Rule;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -21,6 +25,7 @@ public class AppiumBase {
     public static WebDriver driver;
     //public static AppiumDriver appiumDriver;
     public static WebDriverWait waitVar;
+
 
     public void createDriver() throws MalformedURLException, InterruptedException {
         //setting capabilities:
@@ -57,6 +62,11 @@ public class AppiumBase {
 
     public WebDriver getDriver() {
         return driver;
+    }
+
+    public byte[] takeScreenshot() {
+        final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        return screenshot;
     }
 
     public void teardown() {

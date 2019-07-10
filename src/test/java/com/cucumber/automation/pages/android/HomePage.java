@@ -4,23 +4,27 @@ import com.cucumber.automation.utils.AppiumBase;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.junit.Assert;
-
 
 public class HomePage extends AppiumBase {
     // All the locators for Home page will be defined here
     // Example:
     //By textField1 = By.id("com.carrefour.tablet.local.debug:id/login");
     // Check the book to find a way to use mobulefind (Appium) instead of By.id (Selenium).
-    By textField1 = MobileBy.id("com.carrefour.tablet.local.debug:id/login");
-    By textfield2 = By.id("com.carrefour.tablet.local.debug:id/password");
-    By computeSum = By.id("com.carrefour.tablet.local.debug:id/submit");
+    //By textField1 = MobileBy.id("com.carrefour.tablet.local.debug:id/login");
+    //By textfield2 = By.id("com.carrefour.tablet.local.debug:id/password");
+    //By computeSum = By.id("com.carrefour.tablet.local.debug:id/submit");
     //By tabCategories = By.id("");
 
     public void pressBack() {
@@ -31,6 +35,12 @@ public class HomePage extends AppiumBase {
         By el = MobileBy.id(locator);
         waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
         driver.findElement(el).sendKeys(text);
+        /*try {
+            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("/home/drf/testaaaaa.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
     }
 
     public void clickElement(String locator) {

@@ -35,6 +35,20 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            try {
+                System.out.println("AAAAAAAAAAAAA");
+                final byte[] screen = appiumBase.takeScreenshot();
+                scenario.embed(screen,"image/png");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /*@After
+    public void tearDown(Scenario scenario) {
         try {
             if (scenario.isFailed()) {
                 final byte[] screenshot = ((TakesScreenshot) appiumBase.getDriver())
@@ -44,7 +58,7 @@ public class Hooks {
         } finally {
             appiumBase.teardown();
         }
-    }
+    }*/
 
 
 
