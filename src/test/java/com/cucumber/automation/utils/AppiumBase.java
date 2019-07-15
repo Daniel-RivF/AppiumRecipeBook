@@ -32,7 +32,7 @@ public class AppiumBase {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "testDevice");
         caps.setCapability(CapabilityType.PLATFORM_NAME,"Android");
-        caps.setCapability("platformVersion", "6");
+        caps.setCapability("platformVersion", "7");
         // CHANGE THIS WHEN USING A REAL DEVICE
         //caps.setCapability("avd","Pixel_C_API_25");
         caps.setCapability("autoGrantPermissions", true);

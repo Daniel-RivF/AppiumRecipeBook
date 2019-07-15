@@ -3,11 +3,19 @@ package com.cucumber.automation.stepdefinition;
 import com.cucumber.automation.pages.android.HomePage;
 import com.cucumber.automation.pages.android.ServicesTest;
 
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 
 public class iOSTestAppSD {
@@ -15,10 +23,32 @@ public class iOSTestAppSD {
     HomePage homePage = new HomePage();
     ServicesTest jsontest = new ServicesTest();
 
+    // CUCUMBER Hooks:
+
+    @Before
+    public void beforeHookfunction() throws MalformedURLException, InterruptedException {
+        homePage.createDriver();
+    }
+
+    @After
+    //@Attachment(type = "image/png")
+    public void afterFunction(Scenario scenario) {
+        if (scenario.isFailed()) {
+            try {
+                //File screenshot = ((TakesScreenshot) homePage.getDriver()).getScreenshotAs(OutputType.FILE);
+                //FileUtils.copyFile(screenshot, new File("/home/drf/f1.png"));
+                byte[] embed2 = ((TakesScreenshot) homePage.getDriver()).getScreenshotAs(OutputType.BYTES);
+                scenario.embed(embed2, "image/png");
+                homePage.teardown();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @When("^user taps back button on device$")
     public void userBack() {
         homePage.pressBack();
-
     }
 
     @When("^user clicks on button with id \"([^\"]*)\"$")
