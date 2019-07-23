@@ -19,32 +19,10 @@ import java.net.MalformedURLException;
 
 
 public class iOSTestAppSD {
+
     //Instances:
     HomePage homePage = new HomePage();
     ServicesTest jsontest = new ServicesTest();
-
-    // CUCUMBER Hooks:
-
-    @Before
-    public void beforeHookfunction() throws MalformedURLException, InterruptedException {
-        homePage.createDriver();
-    }
-
-    @After
-    //@Attachment(type = "image/png")
-    public void afterFunction(Scenario scenario) {
-        if (scenario.isFailed()) {
-            try {
-                //File screenshot = ((TakesScreenshot) homePage.getDriver()).getScreenshotAs(OutputType.FILE);
-                //FileUtils.copyFile(screenshot, new File("/home/drf/f1.png"));
-                byte[] embed2 = ((TakesScreenshot) homePage.getDriver()).getScreenshotAs(OutputType.BYTES);
-                scenario.embed(embed2, "image/png");
-                homePage.teardown();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     @When("^user taps back button on device$")
     public void userBack() {

@@ -9,10 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import static com.cucumber.automation.libs.BasicUtils.validateWithRegexp2;
+
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.junit.Assert;
@@ -25,7 +26,6 @@ public class HomePage extends AppiumBase {
     //By textField1 = MobileBy.id("com.carrefour.tablet.local.debug:id/login");
     //By textfield2 = By.id("com.carrefour.tablet.local.debug:id/password");
     //By computeSum = By.id("com.carrefour.tablet.local.debug:id/submit");
-    //By tabCategories = By.id("");
 
     public void pressBack() {
         driver.navigate().back();
@@ -80,7 +80,14 @@ public class HomePage extends AppiumBase {
         Assert.assertTrue("ERROR: Element with id " + locator + " did not match with regex " + validatewith + ". Found: " + textElement , matcher.matches());
     }
 
+    //This is to test the BasicUtils lib:
 
+    public void validatereg2(String locator, String validatewith) {
+        By el = MobileBy.xpath(locator);
+        waitVar.until(ExpectedConditions.presenceOfElementLocated(el));
+        validateWithRegexp2(driver, el, validatewith);
+
+    }
 
 }
 
